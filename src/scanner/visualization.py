@@ -143,7 +143,7 @@ def draw_interactive(
         net.add_node(node, label=label, color=color, size=size, title=title, font={"size": 11})
 
     for src, dst in G.edges():
-        net.add_edge(src, dst, color="#555577", arrows="to")
+        net.add_edge(src, dst, color={"color": "#555577", "highlight": "#ffffff"}, arrows="to")
 
     output.parent.mkdir(parents=True, exist_ok=True)
     net.save_graph(str(output))

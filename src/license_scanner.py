@@ -37,11 +37,10 @@ class DepthType(click.ParamType):
     type=DepthType(),
     help="Recursion depth, or 'max' for full BFS.",
 )
-@click.option(
-    "--dir", "directory",
-    default=".", show_default=True,
+@click.argument(
+    "directory",
+    default=".",
     type=click.Path(exists=True, file_okay=False, path_type=Path),
-    help="Project directory.",
 )
 @click.option(
     "--output",
@@ -49,7 +48,7 @@ class DepthType(click.ParamType):
     type=click.Path(dir_okay=False, path_type=Path),
     help="Output PNG path (e.g. wyniki/licenses.png).",
 )
-@click.option("--no-graph", is_flag=True, help="Skip graph visualization, print table only.")
+@click.option("--display", is_flag=True, default=False, help="Show matplotlib graph visualization.")
 @click.option(
     "--browser",
     default=None,
@@ -73,7 +72,7 @@ class DepthType(click.ParamType):
     type=click.Choice(["pretty", "jsonl"], case_sensitive=False),
     help="Output format for --out.",
 )
-def main(depth: int | None, directory: Path, output: Path | None, no_graph: bool, browser: Path | None, layout: str, out: Path | None, out_type: str) -> None:
+def main(depth: int | None, directory: Path, output: Path | None, display: bool, browser: Path | None, layout: str, out: Path | None, out_type: str) -> None:
     """Dependency license scanner with recursive graph visualization."""
     directory = directory.resolve()
     depth_label = "max" if depth is None else depth
@@ -107,7 +106,7 @@ def main(depth: int | None, directory: Path, output: Path | None, no_graph: bool
                 print_table(licenses, depths=depths, file=f)
         click.echo(f"  Table saved → {out} ({out_type})")
 
-    if not no_graph:
+    if display:
         draw_graph(G, licenses, output=output, depths=depths, layout=layout)
 
     if browser:
