@@ -1,8 +1,8 @@
 # [Tytuł mini-projektu]
 
-**Autor:** [Imię Nazwisko], nr indeksu: [XXXXXX]
+**Autor:** Dawid Glinkowski, nr indeksu: 266509
 
-**Temat:** [Numer z menu (1-29) lub "własny"] — [Nazwa tematu]
+**Temat:** 1 — [Nazwa tematu]
 
 **Kurs:** Aspekty prawne, społeczne i etyczne w AI, PWr 2025/2026
 
