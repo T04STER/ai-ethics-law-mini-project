@@ -1,0 +1,236 @@
+
+══════════════════════════════════════════════════════════════════════════════
+  PACKAGE                             LICENSE                     D  CATEGORY
+══════════════════════════════════════════════════════════════════════════════
+  absl-py                             Apache Software License     2  ✓ Permissive
+  accelerate                          Apache                      2  ✓ Permissive
+  addict                              MIT License                 2  ✓ Permissive
+  aiofiles                            Apache-2.0                  2  ✓ Permissive
+  aiohappyeyeballs                    PSF-2.0                     3  ✓ Permissive
+  aiohttp                             Apache-2.0 AND MIT          2  ✓ Permissive
+  aiohttp-retry                       MIT                         3  ✓ Permissive
+  aiosignal                           Apache 2.0                  3  ✓ Permissive
+  albucore                            MIT License           ...   2  ✓ Permissive
+  albumentations                      MIT License           ...   1  ✓ Permissive
+  amqp                                BSD                         3  ✓ Permissive
+  annotated-doc                       Unknown                     4  ? Unknown
+  annotated-types                     MIT License                 2  ✓ Permissive
+  antlr4-python3-runtime              BSD                         2  ✓ Permissive
+  anyio                               Unknown                     2  ? Unknown
+  appdirs                             MIT                         3  ✓ Permissive
+  arxiv                               MIT License                 2  ✓ Permissive
+  arxiv-mcp-server                    Apache-2.0                  1  ✓ Permissive
+  async-timeout                       Apache 2                    3  ✓ Permissive
+  asyncssh                            EPL-2.0 OR GPL-2.0-or-...   3  △ Weak Copyleft
+  atpublic                            Apache-2.0                  3  ✓ Permissive
+  attrs                               Unknown                     2  ? Unknown
+  billiard                            BSD                         3  ✓ Permissive
+  bitsandbytes                        Unknown                     2  ? Unknown
+  black                               Unknown                     2  ? Unknown
+  celery                              BSD-3-Clause                2  ✓ Permissive
+  certifi                             MPL-2.0                     3  △ Weak Copyleft
+  cffi                                Unknown                     4  ? Unknown
+  cfgv                                MIT                         2  ✓ Permissive
+  charset-normalizer                  MIT                         3  ✓ Permissive
+  click                               Unknown                     2  ? Unknown
+  click-didyoumean                    MIT                         3  ✓ Permissive
+  click-plugins                       New BSD                     3  ✓ Permissive
+  click-repl                          MIT                         3  ✓ Permissive
+  colorama                            BSD License                 2  ✓ Permissive
+  configobj                           BSD-3-Clause                2  ✓ Permissive
+  cryptography                        Unknown                     4  ? Unknown
+  cuda-bindings                       Unknown                     2  ? Unknown
+  cuda-pathfinder                     Unknown                     3  ? Unknown
+  cuda-toolkit                        Unknown                     2  ? Unknown
+  dataclasses                         Apache                      3  ✓ Permissive
+  datasets                            Apache 2.0                  2  ✓ Permissive
+  dictdiffer                          MIT License                 3  ✓ Permissive
+  diffusers                           Apache 2.0 License          1  ✓ Permissive
+  dill                                BSD-3-Clause                3  ✓ Permissive
+  diskcache                           Apache 2.0                  3  ✓ Permissive
+  distlib                             PSF-2.0                     3  ✓ Permissive
+  distro                              Apache License, Versio...   2  ✓ Permissive
+  dpath                               MIT                         2  ✓ Permissive
+  dulwich                             Unknown                     2  ? Unknown
+  dvc                                 Unknown                     1  ? Unknown
+  dvc-data                            Unknown                     2  ? Unknown
+  dvc-http                            Apache License 2.0          2  ✓ Permissive
+  dvc-objects                         Unknown                     2  ? Unknown
+  dvc-render                          Apache-2.0                  2  ✓ Permissive
+  dvc-studio-client                   Unknown                     2  ? Unknown
+  dvc-task                            Apache-2.0                  2  ✓ Permissive
+  einops                              MIT                         2  ✓ Permissive
+  entrypoints                         MIT License                 3  ✓ Permissive
+  eval-type-backport                  MIT                         2  ✓ Permissive
+  exceptiongroup                      MIT License                 2  ✓ Permissive
+  facexlib                            Apache License 2.0          2  ✓ Permissive
+  feedparser                          BSD-2-Clause                3  ✓ Permissive
+  filelock                            MIT License                 2  ✓ Permissive
+  filterpy                            MIT                         3  ✓ Permissive
+  flatten-dict                        MIT                         2  ✓ Permissive
+  flufl.lock                          Apache-2.0                  2  ✓ Permissive
+  frozenlist                          Apache-2.0                  3  ✓ Permissive
+  fsspec                              Unknown                     2  ? Unknown
+  funcy                               BSD                         2  ✓ Permissive
+  future                              MIT                         2  ✓ Permissive
+  gitdb                               BSD License                 3  ✓ Permissive
+  gitpython                           BSD-3-Clause                2  ✓ Permissive
+  grandalf                            GPLv2 | EPLv1               2  ✗ Copyleft
+  grpcio                              Unknown                     2  ? Unknown
+  gto                                 Apache License 2.0          2  ✓ Permissive
+  h11                                 MIT                         3  ✓ Permissive
+  hf-xet                              Apache Software License     3  ✓ Permissive
+  httpcore                            BSD License                 3  ✓ Permissive
+  httpx                               BSD-3-Clause                2  ✓ Permissive
+  httpx-sse                           MIT                         3  ✓ Permissive
+  huggingface-hub                     Apache-2.0                  2  ✓ Permissive
+  hydra-core                          MIT                         1  ✓ Permissive
+  identify                            MIT                         2  ✓ Permissive
+  idna                                Unknown                     3  ? Unknown
+  imageio                             Unknown                     3  ? Unknown
+  importlib-metadata                  Unknown                     2  ? Unknown
+  importlib-resources                 Unknown                     2  ? Unknown
+  iniconfig                           Unknown                     2  ? Unknown
+  iterative-telemetry                 Apache-2.0                  2  ✓ Permissive
+  jinja2                              BSD License                 2  ✓ Permissive
+  jsonschema                          Unknown                     3  ? Unknown
+  jsonschema-specifications           Unknown                     4  ? Unknown
+  kombu                               BSD-3-Clause                2  ✓ Permissive
+  lazy-loader                         Unknown                     3  ? Unknown
+  lightning-utilities                 Apache-2.0                  2  ✓ Permissive
+  llvmlite                            Unknown                     4  ? Unknown
+  lmdb                                OLDAP-2.8                   2  ? Unknown
+  markdown                            Unknown                     2  ? Unknown
+  markdown-it-py                      MIT License                 3  ✓ Permissive
+  markupsafe                          Unknown                     3  ? Unknown
+  mcp                                 MIT                         2  ✓ Permissive
+  mdurl                               MIT License                 4  ✓ Permissive
+  mpmath                              Unknown                     3  ? Unknown
+  multidict                           Apache License 2.0          3  ✓ Permissive
+  multiprocess                        BSD-3-Clause                3  ✓ Permissive
+  mypy-extensions                     Unknown                     3  ? Unknown
+  networkx                            Unknown                     2  ? Unknown
+  nodeenv                             BSD                         2  ✓ Permissive
+  numba                               BSD                         3  ✓ Permissive
+  numkong                             Apache-2.0                  3  ✓ Permissive
+  numpy                               Unknown                     1  ? Unknown
+  nvidia-cublas                       Unknown                     3  ? Unknown
+  nvidia-cuda-cccl                    Unknown                     3  ? Unknown
+  nvidia-cuda-nvrtc                   Unknown                     4  ? Unknown
+  nvidia-cudnn-cu13                   Unknown                     2  ? Unknown
+  nvidia-cusparselt-cu13              NVIDIA Proprietary Sof...   2  ⚠ Proprietary
+  nvidia-nccl-cu13                    Unknown                     2  ? Unknown
+  nvidia-nvshmem-cu13                 Unknown                     2  ? Unknown
+  omegaconf                           BSD License                 2  ✓ Permissive
+  openai-clip                         Unknown                     2  ? Unknown
+  opencv-python                       Apache 2.0                  3  ✓ Permissive
+  opencv-python-headless              Apache 2.0                  2  ✓ Permissive
+  orjson                              Apache Software License     3  ✓ Permissive
+  packaging                           Unknown                     2  ? Unknown
+  pandas                              BSD 3-Clause License  ...   2  ✓ Permissive
+  pathlib2                            MIT                         3  ✓ Permissive
+  pathspec                            Mozilla Public License...   2  △ Weak Copyleft
+  pillow                              Unknown                     2  ? Unknown
+  platformdirs                        MIT License                 2  ✓ Permissive
+  pluggy                              MIT                         2  ✓ Permissive
+  pre-commit                          MIT                         1  ✓ Permissive
+  prompt-toolkit                      BSD License                 4  ✓ Permissive
+  propcache                           Apache-2.0                  3  ✓ Permissive
+  protobuf                            3-Clause BSD License        2  ✓ Permissive
+  psutil                              BSD-3-Clause                2  ✓ Permissive
+  pyarrow                             Unknown                     3  ? Unknown
+  pycparser                           Unknown                     5  ? Unknown
+  pydantic                            Unknown                     1  ? Unknown
+  pydantic-core                       Unknown                     2  ? Unknown
+  pydantic-settings                   MIT License                 2  ✓ Permissive
+  pydot                               Unknown                     2  ? Unknown
+  pygit2                              GPLv2 with linking exc...   3  ✗ Copyleft
+  pygments                            Unknown                     2  ? Unknown
+  pygtrie                             Apache-2.0                  2  ✓ Permissive
+  pyiqa                               Apache Software License     1  ✓ Permissive
+  pyjwt                               Unknown                     3  ? Unknown
+  pyparsing                           Unknown                     2  ? Unknown
+  pytest                              Unknown                     1  ? Unknown
+  python-dateutil                     Dual License                2  ? Unknown
+  python-discovery                    Permission is hereby g...   3  ✓ Permissive
+  python-dotenv                       BSD-3-Clause                2  ✓ Permissive
+  python-multipart                    Apache Software License     3  ✓ Permissive
+  pytokens                            MIT License           ...   3  ✓ Permissive
+  pytorch-lightning                   Apache-2.0                  1  ✓ Permissive
+  pywin32                             PSF                         3  ✓ Permissive
+  pyyaml                              MIT                         2  ✓ Permissive
+  referencing                         Unknown                     4  ? Unknown
+  regex                               Unknown                     2  ? Unknown
+  requests                            Apache-2.0                  2  ✓ Permissive
+  rich                                MIT                         2  ✓ Permissive
+  rpds-py                             Unknown                     4  ? Unknown
+  ruamel.yaml                         MIT                         2  ✓ Permissive
+  ruff                                Unknown                     1  ? Unknown
+  safetensors                         Apache Software License     2  ✓ Permissive
+  scandir                             New BSD License             4  ✓ Permissive
+  scikit-image                        Files: *          Copy...   2  ✓ Permissive
+  scipy                               Copyright (c) 2001-200...   2  ✓ Permissive
+  scmrepo                             Unknown                     2  ? Unknown
+  semver                              Copyright (c) 2013, Ko...   3  ✓ Permissive
+  sentencepiece                       Unknown                     2  ? Unknown
+  sentry-sdk                          Unknown                     2  ? Unknown
+  setuptools                          Unknown                     2  ? Unknown
+  sgmllib3k                           BSD License                 4  ✓ Permissive
+  shellingham                         ISC License                 4  ✓ Permissive
+  shortuuid                           BSD-3-Clause                2  ✓ Permissive
+  shtab                               Unknown                     2  ? Unknown
+  six                                 MIT                         3  ✓ Permissive
+  smmap                               BSD-3-Clause                4  ✓ Permissive
+  sqltrie                             Apache-2.0                  3  ✓ Permissive
+  sse-starlette                       Unknown                     2  ? Unknown
+  starlette                           Unknown                     3  ? Unknown
+  stringzilla                         Apache-2.0                  3  ✓ Permissive
+  sympy                               BSD                         2  ✓ Permissive
+  tabulate                            Unknown                     2  ? Unknown
+  tensorboard                         Apache 2.0                  1  ✓ Permissive
+  tensorboard-data-server             Apache 2.0                  2  ✓ Permissive
+  tifffile                            BSD-3-Clause                3  ✓ Permissive
+  timm                                Apache-2.0                  2  ✓ Permissive
+  tokenizers                          Apache Software License     3  ✓ Permissive
+  tomli                               Unknown                     2  ? Unknown
+  tomlkit                             MIT                         2  ✓ Permissive
+  torch                               BSD-3-Clause                1  ✓ Permissive
+  torchaudio                          BSD License                 1  ✓ Permissive
+  torchmetrics                        Apache-2.0                  1  ✓ Permissive
+  torchvision                         BSD                         1  ✓ Permissive
+  tqdm                                MPL-2.0 AND MIT             2  △ Weak Copyleft
+  transformers                        Apache 2.0 License          2  ✓ Permissive
+  triton                              MIT License                 2  ✓ Permissive
+  typer                               Unknown                     3  ? Unknown
+  typing                              PSF                         3  ✓ Permissive
+  typing-extensions                   Unknown                     2  ? Unknown
+  typing-inspection                   Unknown                     2  ? Unknown
+  tzdata                              Apache-2.0                  3  ✓ Permissive
+  tzlocal                             MIT                         3  ✓ Permissive
+  urllib3                             Unknown                     3  ? Unknown
+  uvicorn                             Unknown                     2  ? Unknown
+  vine                                BSD                         3  ✓ Permissive
+  virtualenv                          MIT License                 2  ✓ Permissive
+  voluptuous                          BSD-3-Clause                2  ✓ Permissive
+  wandb                               MIT License           ...   1  ✓ Permissive
+  wcwidth                             Unknown                     5  ? Unknown
+  werkzeug                            Unknown                     2  ? Unknown
+  xxhash                              BSD                         3  ✓ Permissive
+  yapf                                 Apache License Versio...   2  ✓ Permissive
+  yarl                                Apache-2.0                  3  ✓ Permissive
+  zc.lockfile                         ZPL-2.1                     2  ? Unknown
+  zipp                                Unknown                     3  ? Unknown
+══════════════════════════════════════════════════════════════════════════════
+
+  Summary by Category:
+    Copyleft            : 2
+    Permissive          : 136
+    Proprietary         : 1
+    Unknown             : 75
+    Weak Copyleft       : 4
+
+  WARNING (copyright / AI Act): Copyleft licenses detected:
+     • grandalf — GPLv2 | EPLv1
+     • pygit2 — GPLv2 with linking exception
+     → Distribution requires releasing source code under the same license.
+

@@ -1,0 +1,22 @@
+
+══════════════════════════════════════════════════════════════════════════════
+  PACKAGE                             LICENSE                     D  CATEGORY
+══════════════════════════════════════════════════════════════════════════════
+  anthropic                           MIT                         1  ✓ Permissive
+  click                               Unknown                     1  ? Unknown
+  google-genai                        Unknown                     1  ? Unknown
+  loguru                              MIT License                 1  ✓ Permissive
+  matplotlib                          License agreement for ...   1  △ Weak Copyleft
+  networkx                            Unknown                     1  ? Unknown
+  openai                              Apache-2.0                  1  ✓ Permissive
+  pandas                              BSD 3-Clause License  ...   1  ✓ Permissive
+  python-dotenv                       BSD-3-Clause                1  ✓ Permissive
+  requests                            Apache-2.0                  1  ✓ Permissive
+  scipy                               Copyright (c) 2001-200...   1  ✓ Permissive
+══════════════════════════════════════════════════════════════════════════════
+
+  Summary by Category:
+    Permissive          : 7
+    Unknown             : 3
+    Weak Copyleft       : 1
+
