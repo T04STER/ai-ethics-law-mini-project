@@ -13,8 +13,10 @@ Ten plik dokumentuje **jak** pracowałem/am nad mini-projektem — jakie narzęd
 | Narzędzie | Do czego używałem |
 |-----------|-------------------|
 | Claude Code Sonnet 4.6 | Generowanie szkieletu skryptu |
-<!-- | np. ChatGPT | Analiza dokumentów prawnych, burza mózgów |
-| np. GitHub Copilot | Autouzupełnianie kodu w VS Code | -->
+| Gemini CLI | Zmiany w kodzie, Podstawowa analiza  |
+| GitHub Copilot | Autouzupełnianie kodu w VS Code |
+| Context7 | MCP do dokumentacji kodu |
+| Gemini 2.5 Flash (API) | Wyjaśnianie ostrzeżeń licencyjnych w `--ai-explain` |
 
 ## Prompty
 
@@ -98,6 +100,12 @@ We can add a --browser flag that uses pyvis to export the networkx graph to an H
 
 **Kontekst:** Dodanie flagi `--browser <plik.html>` eksportującej interaktywny graf jako samodzielny plik HTML przy użyciu biblioteki `pyvis`. Graf umożliwia przeciąganie węzłów, zoom oraz tooltip z pełnymi informacjami o pakiecie (licencja, kategoria, głębokość). Rozmiar węzła skaluje się odwrotnie z głębokością. Kolor węzłów odpowiada tej samej konwencji co w widoku matplotlib.
 
+```
+Extend current script with --ai-explain arg which uses gemini (throws error if GOOGLE_API_KEY is not set) to explain why the warning was raised and what does it mean to the project
+```
+
+**Kontekst:** Dodanie flagi `--ai-explain` integrującej API Gemini (`gemini-2.5-flash`) z modułem `src/scanner/explain.py`. Skaner zbiera ostrzeżenia licencyjne (copyleft, weak copyleft, proprietary, unknown) i wysyła je do Gemini z system instruction nakazującym wyjaśnienie po polsku w kontekście prawnym (AI Act, RODO, IP). Brak zmiennej `GOOGLE_API_KEY` skutkuje błędem z instrukcją konfiguracji. Użyto biblioteki `google-genai` (już w zależnościach projektu).
+
 ### Debugowanie i poprawki
 
 ```
@@ -118,12 +126,11 @@ We can add a --browser flag that uses pyvis to export the networkx graph to an H
 
 5. **pyvis zamiast d3.js / plotly** — Biblioteka pyvis generuje samodzielny plik HTML bez potrzeby serwera i bez pisania JavaScript. Wystarczy otworzyć plik w przeglądarce.
 
+6. **Gemini do wyjaśniania ostrzeżeń** — Zamiast statycznych komunikatów, `--ai-explain` wysyła zebrane ostrzeżenia do LLM, który wyjaśnia implikacje prawne w kontekście AI Act i RODO. Wybrano Gemini 2.5 Flash (szybki, tani) zamiast GPT/Claude, ponieważ `google-genai` było już w zależnościach projektu.
+
 ## Co nie zadziałało
 
-[Ślepe uliczki, błędy, nieudane podejścia — to jest wartościowa część dokumentacji]
-
-1. **[Problem]** — [Co poszło nie tak? Jak to naprawiłem / obszedłem?]
-2. **[Problem]** — [...]
+1. **W przypadku wielu paczek graf w postaci png jest nieczytelny** — Rozszerzenie skryptu o argument umozliwiajacy dependencji output w postaci interaktywnego html, umozliwienie ograniczenia rekurencji skryptu
 
 ## Iteracje
 
@@ -136,3 +143,5 @@ We can add a --browser flag that uses pyvis to export the networkx graph to an H
 4. **v4 — Rozbudowane CLI (click)** — Zamiana argparse na click, `--depth max`, kolumna głębokości w tabeli, wybór layoutu grafu, eksport tabeli (`--out`, `--out-type`).
 
 5. **v5 — Interaktywny graf** — Dodanie `--browser` z pyvis, samodzielny plik HTML z możliwością eksploracji grafu zależności w przeglądarce.
+
+6. **v6 — AI-powered wyjaśnienia** — Dodanie `--ai-explain` z integracją Gemini API. Nowy moduł `src/scanner/explain.py` zbiera ostrzeżenia i wysyła je do modelu z promptem systemowym ukierunkowanym na aspekty prawne i etyczne.

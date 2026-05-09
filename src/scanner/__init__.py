@@ -2,6 +2,7 @@ from .parsers import find_dependencies
 from .graph import build_graph
 from .visualization import draw_graph, draw_interactive
 from .reporting import print_table, write_jsonl
+from .explain import explain_warnings
 
 __all__ = [
     "find_dependencies",
@@ -10,4 +11,5 @@ __all__ = [
     "draw_interactive",
     "print_table",
     "write_jsonl",
+    "explain_warnings",
 ]

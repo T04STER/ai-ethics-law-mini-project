@@ -1,0 +1,35 @@
+Querying Gemini for license warning explanations...
+
+──────────────────────────────────────────────────────────────────────────────
+  AI EXPLANATION (Gemini)
+──────────────────────────────────────────────────────────────────────────────
+Oto wyjaśnienie ostrzeżeń dotyczących licencji i ich implikacji dla Twojego projektu:
+
+---
+
+### 1. Ostrzeżenia [UNKNOWN] (Nieznana Licencja)
+
+**Dotyczy pakietów:** `attrs`, `bitsandbytes`, `click`, `cuda-bindings`, `cuda-toolkit`, `dulwich`, `dvc`, `dvc-data`, `dvc-objects`, `dvc-studio-client`, `fsspec`, `grpcio`, `importlib-metadata`, `importlib-resources`, `iniconfig`, `lmdb` (OLDAP-2.8), `markdown`, `networkx`, `numpy`, `nvidia-cudnn-cu13`, `nvidia-nccl-cu13`, `nvidia-nvshmem-cu13`, `openai-clip`, `packaging`, `pillow`, `pydantic`, `pydantic-core`, `pydot`, `pygments`, `pyparsing`, `pytest`, `regex`, `ruff`, `scmrepo`, `sentencepiece`, `sentry-sdk`, `setuptools`, `shtab`, `tabulate`, `tomli`, `typing-extensions`, `typing-inspection`, `werkzeug`, `zc.lockfile` (ZPL-2.1).
+
+**1. Dlaczego ostrzeżenie zostało podniesione (ryzyko):**
+Skaner nie był w stanie zidentyfikować lub sklasyfikować licencji dla tych pakietów. Oznacza to, że warunki prawne korzystania z tych komponentów są niejasne. Brak jasnej licencji stwarza wysokie ryzyko prawne, ponieważ nie wiesz, czy masz prawo używać, modyfikować lub rozpowszechniać ten kod w swoim projekcie. Może to prowadzić do naruszenia praw autorskich.
+
+**2. Co to oznacza dla projektu (obowiązki, ryzyka, implikacje AI Act / RODO):**
+*   **Ryzyko prawne:** Największe ryzyko to nieświadome naruszenie praw autorskich, co może skutkować pozwami sądowymi, nakazami zaprzestania działalności i wysokimi odszkodowaniami.
+*   **Brak zgodności:** Nie możesz zagwarantować zgodności z przepisami dotyczącymi oprogramowania, jeśli nie znasz jego licencji.
+*   **Obowiązki:** Musisz ręcznie zbadać każdy z tych pakietów, aby znaleźć i zrozumieć jego licencję. Często licencja jest zawarta w plikach źródłowych pakietu (np. `LICENSE`, `COPYING`). Jeśli licencja jest niejasna lub jej brakuje, należy skontaktować się z twórcą pakietu lub rozważyć jego usunięcie/zastąpienie.
+*   **Implikacje AI Act / RODO:**
+    *   **AI Act:** Brak jasnych licencji utrudnia wykazanie zgodności z wymogami przejrzystości, zarządzania ryzykiem i odpowiedzialności, szczególnie w przypadku systemów AI wysokiego ryzyka. Niepewność co do praw własności intelektualnej komponentów może podważyć wiarygodność i bezpieczeństwo systemu.
+    *   **RODO:** Chociaż mniej bezpośrednie, niejasne licencje mogą wprowadzać niepewność co do pochodzenia i bezpieczeństwa komponentów, co pośrednio wpływa na zdolność do zapewnienia integralności i poufności danych osobowych przetwarzanych przez system.
+
+---
+
+### 2. Ostrzeżenie [COPYLEFT] (Silna Licencja Copyleft)
+
+**Dotyczy pakietu:** `grandalf` — GPLv2 | EPLv1
+
+**1. Dlaczego ostrzeżenie zostało podniesione (ryzyko):**
+`grandalf` jest objęty licencjami GPLv2 LUB EPLv1.
+*   **GPLv2 (GNU General Public License v2)** to silna licencja copyleft. Oznacza to, że jeśli rozpowszechniasz oprogramowanie, które zawiera lub jest pochodną kodu na licencji GPLv2 (np. poprzez statyczne lub dynamiczne linkowanie), musisz udostępnić cały kod źródłowy swojego projektu na warunkach GPLv2. Jest to tzw. "efekt wirusowy".
+*   **EPLv1 (Eclipse Public License v1)** to również licencja copyleft, ale słabsza niż GPL. Wymaga udostępnienia mod
+──────────────────────────────────────────────────────────────────────────────

@@ -11,6 +11,7 @@ from pathlib import Path
 import click
 
 from scanner import find_dependencies, build_graph, print_table, write_jsonl, draw_graph, draw_interactive
+from scanner.explain import explain_warnings
 from scanner.visualization import LAYOUTS
 
 
@@ -72,7 +73,12 @@ class DepthType(click.ParamType):
     type=click.Choice(["pretty", "jsonl"], case_sensitive=False),
     help="Output format for --out.",
 )
-def main(depth: int | None, directory: Path, output: Path | None, display: bool, browser: Path | None, layout: str, out: Path | None, out_type: str) -> None:
+@click.option(
+    "--ai-explain", "ai_explain",
+    is_flag=True, default=False,
+    help="Use Gemini to explain license warnings (requires GOOGLE_API_KEY).",
+)
+def main(depth: int | None, directory: Path, output: Path | None, display: bool, browser: Path | None, layout: str, out: Path | None, out_type: str, ai_explain: bool) -> None:
     """Dependency license scanner with recursive graph visualization."""
     directory = directory.resolve()
     depth_label = "max" if depth is None else depth
@@ -105,6 +111,18 @@ def main(depth: int | None, directory: Path, output: Path | None, display: bool,
             else:
                 print_table(licenses, depths=depths, file=f)
         click.echo(f"  Table saved → {out} ({out_type})")
+
+    if ai_explain:
+        click.echo("\nQuerying Gemini for license warning explanations...")
+        explanation = explain_warnings(licenses)
+        if explanation:
+            click.echo("\n" + "─" * 78)
+            click.echo("  AI EXPLANATION (Gemini)")
+            click.echo("─" * 78)
+            click.echo(explanation)
+            click.echo("─" * 78 + "\n")
+        else:
+            click.echo("  No warnings to explain — all licenses are permissive.\n")
 
     if display:
         draw_graph(G, licenses, output=output, depths=depths, layout=layout)

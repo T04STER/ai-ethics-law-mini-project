@@ -1,8 +1,8 @@
-# [Tytuł mini-projektu]
+# Audyt licencji
 
 **Autor:** Dawid Glinkowski, nr indeksu: 266509
 
-**Temat:** 1 — [Nazwa tematu]
+**Temat:** 1 — Audyt licencji w repozytorium
 
 **Kurs:** Aspekty prawne, społeczne i etyczne w AI, PWr 2025/2026
 
@@ -15,23 +15,25 @@
 ```bash
 uv sync                        # zainstaluj zależności
 cp .env.example .env           # skopiuj wzór zmiennych środowiskowych
-# uzupełnij klucze API w .env
+# uzupełnij klucze API w .env (opcjonalnie dla przykładów LLM)
 
-uv run src/example_openai.py   # sprawdź że działa (OpenAI)
-uv run src/example_anthropic.py  # lub Anthropic
-uv run src/example_gemini.py     # lub Gemini
+# Uruchomienie audytu dla bieżącego projektu
+uv run src/license_scanner.py --browser wyniki/graph.html --out wyniki/licenses.txt
 ```
 
 ---
 
 ## Cel projektu
 
-[2-3 zdania: co projekt robi i po co. Jaki problem rozwiązuje / analizuje?]
+Projekt służy do automatycznego audytu licencji bibliotek Python w drzewie zależności. Kluczowe cele to:
+- **Identyfikacja ryzyk prawnych**: Wykrywanie licencji typu Copyleft (np. GPL), które mogą wymuszać udostępnienie kodu źródłowego projektu.
+- **Wizualizacja zależności**: Tworzenie grafów (statycznych i interaktywnych) obrazujących strukturę projektu i powiązane z nią licencje.
+- **Klasyfikacja automatyczna**: Przypisywanie licencji do kategorii (Permissive, Copyleft, Weak Copyleft, Unknown) na podstawie metadanych PyPI i słownika SPDX.
+- **Opcjonalna AI explain**: Umowzliwia wstepne wyjasnienie warningu z uzyciem AI   
 
 ## Powiązanie z projektem grupowym
 
-[Jak mini-projekt wiąże się z Waszym projektem naukowo-wdrożeniowym? Jeśli nie — napisz dlaczego wybrałeś ten temat.]
-
+Mini-projekt jest luźno powiązany z projektem. Temat licencji uwazam za istotny ze względu na multum bilbliotek w pythonie i coraz popularniejszy vibe coding, który sprawia, ze ludzie traca kontrole nad kodem i agenci (badz inni kontrybutorzy) moga dodac zaleznosci, ktorych licencja jest nieodpowiednia
 ## Wymagania
 
 Projekt korzysta z [uv](https://docs.astral.sh/uv/) — szybkiego menedżera pakietów Python.
@@ -42,40 +44,59 @@ curl -LsSf https://astral.sh/uv/install.sh | sh
 
 # Instalacja zależności
 uv sync
-
-# Z notebookami Jupyter
-uv sync --extra notebooks
-```
-
-**Zmienne środowiskowe** — skopiuj plik `.env.example` i uzupełnij klucze API:
-
-```bash
-cp .env.example .env
-# Uzupełnij klucze w .env (OpenAI / Anthropic / Google — w zależności od projektu)
 ```
 
 ## Uruchomienie
 
-```bash
-# Główny skrypt (zamień na swój po implementacji)
-uv run src/main.py
+Skrypt `src/license_scanner.py` oferuje bogaty interfejs CLI (oparty o bibliotekę `click`):
 
-# lub notebook
-uv run jupyter notebook notebooks/analiza.ipynb
+```bash
+# Podstawowy audyt (głębokość 2)
+uv run src/license_scanner.py
+
+# Pełny audyt (wszystkie zależności przechodnie) z interaktywnym grafem
+uv run src/license_scanner.py --depth max --browser wyniki/pnw.html
+
+# Audyt konkretnego katalogu i zapis do JSONL
+uv run src/license_scanner.py /sciezka/do/projektu --out wyniki/audit.jsonl --out-type jsonl
 ```
+
+**Dostępne flagi:**
+- `--depth [int|max]`: Głębokość rekurencji (domyślnie 2).
+- `--browser FILE`: Generuje interaktywny graf HTML (pyvis).
+- `--output FILE`: Zapisuje statyczny graf PNG (matplotlib).
+- `--out FILE`: Zapisuje tabelę wyników do pliku.
+- `--out-type [pretty|jsonl]`: Format zapisu tabeli.
+- `--layout [shell|spring|...]`: Algorytm ułożenia grafu.
 
 ## Wyniki
 
-[Najważniejsze wyniki — tabelki, wykresy, liczby. Wstaw bezpośrednio lub linkuj do plików w `wyniki/`.]
+Przykładowe wyniki audytu dla projektu naukowo-wdrozeniowego:
+
+1. **Raport Tekstowy**: [wyniki/pnw.txt](wyniki/pnw.txt)
+2. **Interaktywny Graf**: [wyniki/graph.html](wyniki/graph.html) (należy otworzyć w przeglądarce)
+3. **Statyczna Wizualizacja**:
+   ![Graf licencji](wyniki/licencje_graf.png)
+4. **GH actions**
+   ![GH actions](wyniki/wyniki-ci-cd.png)
 
 ## Wnioski merytoryczne
 
-[Kluczowa sekcja — co wynika z analizy w kontekście prawa / etyki / regulacji AI? Konkretne obserwacje i rekomendacje.]
+Na podstawie przeprowadzonego audytu (plik `wyniki/pnw.txt`) wyciągnięto następujące wnioski:
+
+1. **Dominacja licencji Permissive**: Większość bibliotek (np. `anthropic`, `openai`, `pandas`) korzysta z licencji MIT, Apache 2.0 lub BSD, co jest bezpieczne dla projektów komercyjnych i naukowych.
+2. **Wykrycie ryzyk (Copyleft)**: Zidentyfikowano bibliotekę `grandalf` z licencją `GPLv2 | EPLv1`. W przypadku dystrybucji projektu jako oprogramowania (nie SaaS), może to wymagać udostępnienia kodu źródłowego.
+3. **Słaba jakość metadanych (Unknown)**: Znaczna liczba pakietów (ok. 20-30% w zależności od głębokości) zwraca licencję `Unknown`. Wynika to z faktu, że autorzy na PyPI często wpisują nazwę licencji w polu `description` zamiast w dedykowanym polu `license`, lub używają niestandardowych formatów. Wymaga to ręcznej weryfikacji dla krytycznych komponentów.
+4. **Złożone zależności**: Interaktywny graf pokazuje, że pojedyncza biblioteka (np. `dvc`) potrafi wprowadzić kilkadziesiąt zależności przechodnich, z których każda niesie własne ryzyko licencyjne.
 
 ## Ograniczenia
 
-[Czego projekt nie robi? Co można by rozszerzyć? Bądź uczciwy.]
+- **Ekosystem**: Obsługuje wyłącznie pakiety Python (PyPI). Brak wsparcia dla npm, cargo itp.
+- **Zależność od PyPI**: Jeśli serwer PyPI jest niedostępny lub pakiet nie ma metadanych, skrypt nie może pobrać licencji.
+- **Brak analizy kodu**: Skrypt polega na zadeklarowanych metadanych, nie skanuje plików `LICENSE` wewnątrz paczek (co byłoby wolniejsze, ale pewniejsze).
 
 ## Źródła
 
-- [Nazwa źródła](URL) — krótki opis
+- [PyPI JSON API](https://warehouse.pypa.io/api-reference/json.html) — źródło metadanych.
+- [SPDX License List](https://spdx.org/licenses/) — podstawa klasyfikacji.
+- [NetworkX](https://networkx.org/) & [Pyvis](https://pyvis.readthedocs.io/) — silniki wizualizacji.
