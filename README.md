@@ -68,26 +68,49 @@ uv run src/license_scanner.py /sciezka/do/projektu --out wyniki/audit.jsonl --ou
 - `--out FILE`: Zapisuje tabelę wyników do pliku.
 - `--out-type [pretty|jsonl]`: Format zapisu tabeli.
 - `--layout [shell|spring|...]`: Algorytm ułożenia grafu.
+- `--ai-explain`: Wyjaśnienie ostrzeżeń licencyjnych przez Gemini (wymaga `GOOGLE_API_KEY`).
 
 ## Wyniki
 
-Przykładowe wyniki audytu dla projektu naukowo-wdrozeniowego:
+Przykładowe wyniki audytu dla projektu naukowo-wdrożeniowego (AbsoluteCinema — 197 pakietów, pełne BFS):
 
 1. **Raport Tekstowy**: [wyniki/pnw.txt](wyniki/pnw.txt)
-2. **Interaktywny Graf**: [wyniki/graph.html](wyniki/graph.html) (należy otworzyć w przeglądarce)
-3. **Statyczna Wizualizacja**:
+2. **Dane JSONL**: [wyniki/licenses_pnw.jsonl](wyniki/licenses_pnw.jsonl) — maszynowo przetwarzalny format
+3. **Interaktywny Graf**: [wyniki/graph.html](wyniki/graph.html) (należy otworzyć w przeglądarce)
+4. **Statyczna Wizualizacja**:
    ![Graf licencji](wyniki/licencje_graf.png)
-4. **GH actions**
+5. **Rozkład kategorii licencji** (porównanie local vs AbsoluteCinema):
+   ![Wykres kołowy](wyniki/categories_pie.png)
+6. **Direct vs transitive dependencies**:
+   ![Direct vs transitive](wyniki/direct_vs_transitive.png)
+7. **GH Actions**:
    ![GH actions](wyniki/wyniki-ci-cd.png)
+8. **AI Explanation**: [wyniki/ai-explaination.txt](wyniki/ai-explaination.txt) — analiza Gemini
+
+### Podsumowanie kategorii (AbsoluteCinema)
+
+| Kategoria | Liczba | Udział |
+|-----------|--------|--------|
+| Permissive | 125 | 63% |
+| Unknown | 65 | 33% |
+| Weak Copyleft | 4 | 2% |
+| Copyleft | 2 | 1% |
+| Proprietary | 1 | 1% |
 
 ## Wnioski merytoryczne
 
-Na podstawie przeprowadzonego audytu (plik `wyniki/pnw.txt`) wyciągnięto następujące wnioski:
+Na podstawie przeprowadzonego audytu (plik `wyniki/pnw.txt`, `wyniki/licenses_pnw.jsonl`) wyciągnięto następujące wnioski:
 
 1. **Dominacja licencji Permissive**: Większość bibliotek (np. `anthropic`, `openai`, `pandas`) korzysta z licencji MIT, Apache 2.0 lub BSD, co jest bezpieczne dla projektów komercyjnych i naukowych.
-2. **Wykrycie ryzyk (Copyleft)**: Zidentyfikowano bibliotekę `grandalf` z licencją `GPLv2 | EPLv1`. W przypadku dystrybucji projektu jako oprogramowania (nie SaaS), może to wymagać udostępnienia kodu źródłowego.
-3. **Słaba jakość metadanych (Unknown)**: Znaczna liczba pakietów (ok. 20-30% w zależności od głębokości) zwraca licencję `Unknown`. Wynika to z faktu, że autorzy na PyPI często wpisują nazwę licencji w polu `description` zamiast w dedykowanym polu `license`, lub używają niestandardowych formatów. Wymaga to ręcznej weryfikacji dla krytycznych komponentów.
-4. **Złożone zależności**: Interaktywny graf pokazuje, że pojedyncza biblioteka (np. `dvc`) potrafi wprowadzić kilkadziesiąt zależności przechodnich, z których każda niesie własne ryzyko licencyjne.
+2. **Ryzyko zależności przechodnich (Case study: `grandalf`)**: Skaner wykrył krytyczne ryzyko związane z pakietem `grandalf` (`GPLv2 | EPLv1`), który jest używany pośrednio przez bibliotekę `pyiqa` (licencja Apache). 
+   - **Licencje nie znikają**: Licencja biblioteki nadrzędnej (Apache) nie nadpisuje licencji jej zależności. Kod `grandalf` wciąż podlega własnym obostrzeniom.
+   - **Konflikt GPLv2 vs Apache**: Generalna niekompatybilność GPLv2 z licencją Apache oraz "wirusowy" charakter GPL mogłyby wymusić otwarcie kodu całego projektu.
+   - **Mitygacja (Wybór EPLv1)**: Dzięki podwójnemu licencjonowaniu `grandalf`, rozwiązaniem jest zadeklarowanie korzystania z niego na warunkach **EPLv1** (Weak Copyleft), co pozwala na bezpieczne łączenie z kodem komercyjnym lub o innych licencjach.
+3. **Copyleft w zależnościach przechodnich (`pygit2`)**: Pakiet `pygit2` (depth 3, zależność `scmrepo` → `dvc`) objęty jest licencją `GPLv2 with linking exception`. Wyjątek linkowania łagodzi "wirusowy" efekt GPL — pozwala na dynamiczne linkowanie bez konieczności otwierania kodu projektu, ale wszelkie modyfikacje samego `pygit2` muszą być udostępnione na GPLv2.
+4. **Proprietary: `nvidia-cusparselt-cu13`**: Jedyny pakiet z licencją proprietary — `NVIDIA Proprietary Software License` (depth 2, zależność przechodnia od `torch`). Licencja NVIDIA zabrania redystrybucji poza kontekstem CUDA toolkit, ogranicza reverse engineering i może wymagać akceptacji EULA. W kontekście AI Act — użycie komponentów proprietary w systemie AI wysokiego ryzyka wymaga udokumentowania warunków licencji i ograniczeń, które mogą wpływać na przejrzystość i audytowalność systemu.
+5. **Weak Copyleft (`certifi`, `pathspec`, `tqdm`, `asyncssh`)**: Cztery pakiety z licencjami MPL-2.0 lub EPL-2.0. MPL-2.0 wymaga udostępnienia zmian w plikach objętych licencją (file-level copyleft), ale nie „zaraża" reszty projektu. Praktyczne ryzyko jest niskie, o ile nie modyfikuje się kodu źródłowego tych bibliotek.
+6. **Słaba jakość metadanych (Unknown)**: Znaczna liczba pakietów (33% w AbsoluteCinema) zwraca licencję `Unknown`. Wynika to z faktu, że autorzy na PyPI często wpisują nazwę licencji w polu `description` zamiast w dedykowanym polu `license`. Wymaga to ręcznej weryfikacji dla krytycznych komponentów.
+7. **Weryfikacja w dobie "Vibe Coding"**: Automatyczny audyt staje się niezbędny przy korzystaniu z agentów AI i narzędzi low-code, które mogą nieświadomie dodawać zależności o restrykcyjnych licencjach do projektu.
 
 ## Ograniczenia
 

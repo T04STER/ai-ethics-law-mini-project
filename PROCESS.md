@@ -12,17 +12,13 @@ Ten plik dokumentuje **jak** pracowałem/am nad mini-projektem — jakie narzęd
 
 | Narzędzie | Do czego używałem |
 |-----------|-------------------|
-| Claude Code Sonnet 4.6 | Generowanie szkieletu skryptu |
+| Claude Code Sonnet 4.6 | Generowanie szkieletu skryptu, refactory, planowanie nowych feature |
 | Gemini CLI | Zmiany w kodzie, Podstawowa analiza  |
 | GitHub Copilot | Autouzupełnianie kodu w VS Code |
 | Context7 | MCP do dokumentacji kodu |
 | Gemini 2.5 Flash (API) | Wyjaśnianie ostrzeżeń licencyjnych w `--ai-explain` |
 
 ## Prompty
-
-> Nie wklejaj outputu z AI — tylko prompty, które wpisywałeś/aś.
-
-### Generowanie kodu i refaktoryzacja
 
 ```
 Napisz skrypt skanujący zależności projektu (requirements.txt, package.json, itp.) i sprawdzający ich licencje.
@@ -131,6 +127,8 @@ Extend current script with --ai-explain arg which uses gemini (throws error if G
 ## Co nie zadziałało
 
 1. **W przypadku wielu paczek graf w postaci png jest nieczytelny** — Rozszerzenie skryptu o argument umozliwiajacy dependencji output w postaci interaktywnego html, umozliwienie ograniczenia rekurencji skryptu
+
+2. **Analiza z użyciem AI** jest stosunkowo ograniczona głównie za sprawą użycie Gemini Flash, możliwe, że bardziej przydatne byłoby rozszerzenie AI o sugestię akcji, np. zmiana
 
 ## Iteracje
 
